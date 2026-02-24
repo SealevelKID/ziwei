@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>紫微斗數基本格局</title>
+    <style>
+        body { display: flex; flex-direction: column; align-items: center; font-family: "Microsoft JhengHei", sans-serif; background: #fdf5e6; padding: 20px; }
+        .controls { margin-bottom: 20px; background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #8b4513; }
+        .main-container { display: flex; justify-content: center; width: 100%; max-width: 1100px; }
+        canvas { border: 3px solid #8b4513; background: #fff; cursor: pointer; box-shadow: 10px 10px 20px rgba(0,0,0,0.1); }
+        #infoPanel { width: 400px; margin-left: 20px; padding: 20px; background: #fff; border: 1px solid #8b4513; border-radius: 10px; display: flex; flex-direction: column; }
+        .highlight { color: #d2691e; font-weight: bold; font-size: 1.1em; }
+        select { padding: 8px; font-size: 16px; border-radius: 4px; border: 1px solid #8b4513; cursor: pointer; }
+        
+        /* 筆記區樣式 */
+        #noteArea { margin-top: 20px; border-top: 2px dashed #deb887; padding-top: 15px; }
+        textarea { width: 100%; height: 120px; margin-top: 10px; padding: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 5px; resize: none; font-size: 14px; }
+        button { margin-top: 10px; padding: 8px 15px; background: #8b4513; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; }
+        button:hover { background: #a0522d; }
+        .save-status { font-size: 12px; color: green; margin-left: 10px; display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <label>1. 選擇基本盤型：</label>
+        <select id="chartSelector">
+            <option value="">-- 請選擇盤型 --</option>
+            <option value="紫微在子">紫微在子</option>
+            <option value="紫微在丑">紫微在丑</option>
+            <option value="紫微在寅">紫微在寅</option>
+            <option value="紫微在卯">紫微在卯</option>
+            <option value="紫微在辰">紫微在辰</option>
+            <option value="紫微在巳">紫微在巳</option>
+            <option value="紫微在午">紫微在午</option>
+            <option value="紫微在未">紫微在未</option>
+            <option value="紫微在申">紫微在申</option>
+            <option value="紫微在酉">紫微在酉</option>
+            <option value="紫微在戌">紫微在戌</option>
+            <option value="紫微在亥">紫微在亥</option>
+        </select>
+        <span style="margin-left: 20px; color: #666;">2. 點擊宮位設定命宮與查看筆記</span>
+    </div>
+
+    <div class="main-container">
+        <canvas id="ziweiCanvas" width="600" height="600"></canvas>
+        
+        <div id="infoPanel">
+            <div id="status">正在載入 JSON 資料...</div>
+            <div id="content">
+                <h3>命盤解說</h3>
+                <p>請先從上方選單選擇盤型，再點擊宮位。</p>
+            </div>
+
+            <div id="noteArea" style="display:none;">
+                <label class="highlight">我的學習筆記：</label>
+                <textarea id="userNote" placeholder="在此輸入您的觀察、案例紀錄或心得..."></textarea>
+                <button onclick="saveNote()">儲存這格筆記</button>
+                <span id="saveStatus" class="save-status">已儲存！</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('ziweiCanvas');
+        const ctx = canvas.getContext('2d');
+        const size = 150;
+        let appData = null;
+        let currentChart = ""; 
+        let selectedLifePos = -1; 
+        const palaceNames = ["命宮", "兄弟", "夫妻", "子女", "財帛", "疾厄", "遷移", "僕役", "官祿", "田宅", "福德", "父母"];
+        const branchMap = [
+            { name: "子", i: 2, j: 3 }, { name: "丑", i: 1, j: 3 }, { name: "寅", i: 0, j: 3 },
+            { name: "卯", i: 0, j: 2 }, { name: "辰", i: 0, j: 1 }, { name: "巳", i: 0, j: 0 },
+            { name: "午", i: 1, j: 0 }, { name: "未", i: 2, j: 0 }, { name: "申", i: 3, j: 0 },
+            { name: "酉", i: 3, j: 1 }, { name: "戌", i: 3, j: 2 }, { name: "亥", i: 3, j: 3 }
+        ];
+
+        fetch('ziwei_data.json')
+            .then(res => res.json())
+            .then(data => {
+                appData = data;
+                document.getElementById('status').innerText = "✅ 資料載入成功";
+                drawBoard();
+            });
+
+        function drawBoard() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = '#8b4513';
+            ctx.lineWidth = 2;
+
+            branchMap.forEach((p, index) => {
+                const x = p.i * size;
+                const y = p.j * size;
+                if (index === selectedLifePos) {
+                    ctx.fillStyle = "#fff4e6";
+                    ctx.fillRect(x, y, size, size);
+                }
+                ctx.strokeRect(x, y, size, size);
+                ctx.font = "14px Arial";
+                ctx.fillStyle = "#8b4513";
+                ctx.fillText(p.name, x + 130, y + 140);
+                
+                if (selectedLifePos !== -1) {
+                    const nameIndex = (selectedLifePos - index + 12) % 12;
+                    const pName = palaceNames[nameIndex];
+                    ctx.font = "bold 16px Microsoft JhengHei";
+                    ctx.fillStyle = pName === "命宮" ? "red" : "#555";
+                    ctx.fillText(pName, x + 10, y + 140);
+                }
+            });
+            if (currentChart) drawStars();
+        }
+
+        function drawStars() {
+            const chart = appData.base_charts.find(c => c.ChartName === currentChart);
+            if (!chart) return;
+            const palaceStarCounts = new Array(12).fill(0);
+
+            appData.stars_info.forEach(star => {
+                let targetPos = star.System === "紫微星系" ? (chart.ZiweiPos - star.Order + 12) % 12 : (chart.TianfuPos + star.Order) % 12;
+                const palace = branchMap[targetPos];
+                const x = palace.i * size + 10;
+                const y = palace.j * size + 30 + (palaceStarCounts[targetPos] * 22);
+                ctx.fillStyle = "#d2691e";
+                ctx.font = "bold 17px Microsoft JhengHei";
+                ctx.fillText(star.StarName, x, y);
+                palaceStarCounts[targetPos]++;
+            });
+        }
+
+        document.getElementById('chartSelector').addEventListener('change', (e) => {
+            currentChart = e.target.value;
+            selectedLifePos = -1;
+            document.getElementById('noteArea').style.display = 'none';
+            drawBoard();
+        });
+
+        canvas.addEventListener('click', (e) => {
+            if (!currentChart) return alert("請先選擇基本盤型！");
+            const i = Math.floor(e.offsetX / size);
+            const j = Math.floor(e.offsetY / size);
+            const clickedIndex = branchMap.findIndex(p => p.i === i && p.j === j);
+            if (clickedIndex !== -1) {
+                selectedLifePos = clickedIndex;
+                drawBoard();
+                showInterpretation();
+            }
+        });
+
+        // --- 顯示解釋與載入筆記 ---
+        function showInterpretation() {
+            const info = appData.interpretations.find(item => item.ChartName === currentChart && item.LifePos === selectedLifePos);
+            const contentDiv = document.getElementById('content');
+            
+            contentDiv.innerHTML = `
+                <h4>盤型：${currentChart}</h4>
+                <p>命宮位：<span class="highlight">${branchMap[selectedLifePos].name}</span></p>
+                <hr>
+                <strong>格局：</strong> ${info ? info.Pattern : "基本格局"}<br><br>
+                <strong>教學解說：</strong><br>
+                <div style="font-size:14px; color:#333;">${info ? info.Content : "暫無解說資料"}</div>
+            `;
+
+            // 顯示筆記區塊並載入舊筆記
+            document.getElementById('noteArea').style.display = 'block';
+            const storageKey = `note_${currentChart}_${selectedLifePos}`;
+            document.getElementById('userNote').value = localStorage.getItem(storageKey) || "";
+        }
+
+        // --- 儲存筆記到本機 ---
+        function saveNote() {
+            const storageKey = `note_${currentChart}_${selectedLifePos}`;
+            const noteText = document.getElementById('userNote').value;
+            localStorage.setItem(storageKey, noteText);
+            
+            // 顯示「已儲存」提示
+            const status = document.getElementById('saveStatus');
+            status.style.display = 'inline';
+            setTimeout(() => { status.style.display = 'none'; }, 2000);
+        }
+    </script>
+</body>
+</html>

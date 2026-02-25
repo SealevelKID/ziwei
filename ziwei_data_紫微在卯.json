@@ -1,0 +1,262 @@
+{
+    "base_charts": [
+        {
+            "ChartName": "紫微在子",
+            "ZiweiPos": 0,
+            "TianfuPos": 4,
+            "Note": "紫微在子，天府在辰"
+        },
+        {
+            "ChartName": "紫微在丑",
+            "ZiweiPos": 1,
+            "TianfuPos": 3,
+            "Note": "紫微在丑，天府在卯"
+        },
+        {
+            "ChartName": "紫微在寅",
+            "ZiweiPos": 2,
+            "TianfuPos": 2,
+            "Note": "紫微天府在寅同宮"
+        },
+        {
+            "ChartName": "紫微在卯",
+            "ZiweiPos": 3,
+            "TianfuPos": 1,
+            "Note": "紫微在卯，天府在丑"
+        },
+        {
+            "ChartName": "紫微在辰",
+            "ZiweiPos": 4,
+            "TianfuPos": 0,
+            "Note": "紫微在辰，天府在子"
+        },
+        {
+            "ChartName": "紫微在巳",
+            "ZiweiPos": 5,
+            "TianfuPos": 11,
+            "Note": "紫微在巳，天府在亥"
+        },
+        {
+            "ChartName": "紫微在午",
+            "ZiweiPos": 6,
+            "TianfuPos": 10,
+            "Note": "紫微在午，天府在戌"
+        },
+        {
+            "ChartName": "紫微在未",
+            "ZiweiPos": 7,
+            "TianfuPos": 9,
+            "Note": "紫微在未，天府在酉"
+        },
+        {
+            "ChartName": "紫微在申",
+            "ZiweiPos": 8,
+            "TianfuPos": 8,
+            "Note": "紫微天府在申同宮"
+        },
+        {
+            "ChartName": "紫微在酉",
+            "ZiweiPos": 9,
+            "TianfuPos": 7,
+            "Note": "紫微在酉，天府在未"
+        },
+        {
+            "ChartName": "紫微在戌",
+            "ZiweiPos": 10,
+            "TianfuPos": 6,
+            "Note": "紫微在戌，天府在午"
+        },
+        {
+            "ChartName": "紫微在亥",
+            "ZiweiPos": 11,
+            "TianfuPos": 5,
+            "Note": "紫微在亥，天府在巳"
+        }
+    ],
+    "stars_info": [
+        {
+            "StarName": "紫微",
+            "System": "紫微星系",
+            "Order": 0,
+            "Direction": "逆時針",
+            "Element": "陰土"
+        },
+        {
+            "StarName": "天機",
+            "System": "紫微星系",
+            "Order": 1,
+            "Direction": "逆時針",
+            "Element": "陰木"
+        },
+        {
+            "StarName": "太陽",
+            "System": "紫微星系",
+            "Order": 3,
+            "Direction": "逆時針",
+            "Element": "陽火"
+        },
+        {
+            "StarName": "武曲",
+            "System": "紫微星系",
+            "Order": 4,
+            "Direction": "逆時針",
+            "Element": "陰金"
+        },
+        {
+            "StarName": "天同",
+            "System": "紫微星系",
+            "Order": 5,
+            "Direction": "逆時針",
+            "Element": "陽水"
+        },
+        {
+            "StarName": "廉貞",
+            "System": "紫微星系",
+            "Order": 8,
+            "Direction": "逆時針",
+            "Element": "陰火"
+        },
+        {
+            "StarName": "天府",
+            "System": "天府星系",
+            "Order": 0,
+            "Direction": "順時針",
+            "Element": "陽土"
+        },
+        {
+            "StarName": "太陰",
+            "System": "天府星系",
+            "Order": 1,
+            "Direction": "順時針",
+            "Element": "陰水"
+        },
+        {
+            "StarName": "貪狼",
+            "System": "天府星系",
+            "Order": 2,
+            "Direction": "順時針",
+            "Element": "陽木"
+        },
+        {
+            "StarName": "巨門",
+            "System": "天府星系",
+            "Order": 3,
+            "Direction": "順時針",
+            "Element": "陰水"
+        },
+        {
+            "StarName": "天相",
+            "System": "天府星系",
+            "Order": 4,
+            "Direction": "順時針",
+            "Element": "陽水"
+        },
+        {
+            "StarName": "天梁",
+            "System": "天府星系",
+            "Order": 5,
+            "Direction": "順時針",
+            "Element": "陽土"
+        },
+        {
+            "StarName": "七殺",
+            "System": "天府星系",
+            "Order": 6,
+            "Direction": "順時針",
+            "Element": "陽金"
+        },
+        {
+            "StarName": "破軍",
+            "System": "天府星系",
+            "Order": 10,
+            "Direction": "順時針",
+            "Element": "陰水"
+        }
+    ],
+    "interpretations": [
+        {
+            "ChartName": "紫微在卯",
+            "LifePos": 0,
+            "Content": "太陽坐命，對宮天梁",
+            "sunmoon": "",
+            "Unnamed: 16383": ""
+        },
+        {
+            "ChartName": "紫微在卯",
+            "LifePos": 1,
+            "Content": "天府坐命，對宮廉殺",
+            "sunmoon": "",
+            "Unnamed: 16383": ""
+        },
+        {
+            "ChartName": "紫微在卯",
+            "LifePos": 2,
+            "Content": "機陰坐命，對空宮",
+            "sunmoon": "",
+            "Unnamed: 16383": ""
+        },
+        {
+            "ChartName": "紫微在卯",
+            "LifePos": 3,
+            "Content": "紫貪坐命，對空宮",
+            "sunmoon": "",
+            "Unnamed: 16383": ""
+        },
+        {
+            "ChartName": "紫微在卯",
+            "LifePos": 4,
+            "Content": "巨門坐命，對宮天同",
+            "sunmoon": "",
+            "Unnamed: 16383": ""
+        },
+        {
+            "ChartName": "紫微在卯",
+            "LifePos": 5,
+            "Content": "天相坐命，對宮武破",
+            "sunmoon": "",
+            "Unnamed: 16383": ""
+        },
+        {
+            "ChartName": "紫微在卯",
+            "LifePos": 6,
+            "Content": "天梁坐命，對宮太陽",
+            "sunmoon": "",
+            "Unnamed: 16383": ""
+        },
+        {
+            "ChartName": "紫微在卯",
+            "LifePos": 7,
+            "Content": "廉殺坐命，對宮天府",
+            "sunmoon": "",
+            "Unnamed: 16383": ""
+        },
+        {
+            "ChartName": "紫微在卯",
+            "LifePos": 8,
+            "Content": "空宮，對宮機陰",
+            "sunmoon": "",
+            "Unnamed: 16383": ""
+        },
+        {
+            "ChartName": "紫微在卯",
+            "LifePos": 9,
+            "Content": "空宮，對宮紫貪",
+            "sunmoon": "",
+            "Unnamed: 16383": ""
+        },
+        {
+            "ChartName": "紫微在卯",
+            "LifePos": 10,
+            "Content": "天同坐命，對宮巨門",
+            "sunmoon": "",
+            "Unnamed: 16383": ""
+        },
+        {
+            "ChartName": "紫微在卯",
+            "LifePos": 11,
+            "Content": "武破坐命，對宮天相",
+            "sunmoon": "",
+            "Unnamed: 16383": ""
+        }
+    ]
+}

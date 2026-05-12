@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <title>紫微斗數基本格局</title>
+    <link rel="stylesheet" href="ziweistyle.css">
+</head>
+
+<body>
+
+    <div class="controls">
+        <label>1. 選擇基本盤型：</label>
+        <select id="chartSelector">
+            <option value="">-- 請選擇盤型 --</option>
+            <option value="紫微在子">紫微在子</option>
+            <option value="紫微在丑">紫微在丑</option>
+            <option value="紫微在寅">紫微在寅</option>
+            <option value="紫微在卯">紫微在卯</option>
+            <option value="紫微在辰">紫微在辰</option>
+            <option value="紫微在巳">紫微在巳</option>
+            <option value="紫微在午">紫微在午</option>
+            <option value="紫微在未">紫微在未</option>
+            <option value="紫微在申">紫微在申</option>
+            <option value="紫微在酉">紫微在酉</option>
+            <option value="紫微在戌">紫微在戌</option>
+            <option value="紫微在亥">紫微在亥</option>
+        </select>
+        <span style="margin-left: 20px; color: #666;">2. 點擊宮位設定命宮與查看筆記</span>
+    </div>
+    <div id="paramSelectors">
+        <label>3. 設定排星參數：</label>
+        <select id="yearStem">
+            <option value="0">甲 (年干)</option>
+            <option value="1">乙</option>
+            <option value="2">丙</option>
+            <option value="3">丁</option>
+            <option value="4">戊</option>
+            <option value="5">己</option>
+            <option value="6">庚</option>
+            <option value="7">辛</option>
+            <option value="8">壬</option>
+            <option value="9">癸</option>
+        </select>
+
+        <select id="yearBranch">
+            <option value="0">子 (鼠)</option>
+            <option value="1">丑 (牛)</option>
+            <option value="2">寅 (虎)</option>
+            <option value="3">卯 (兔)</option>
+            <option value="4">辰 (龍)</option>
+            <option value="5">巳 (蛇)</option>
+            <option value="6">午 (馬)</option>
+            <option value="7">未 (羊)</option>
+            <option value="8">申 (猴)</option>
+            <option value="9">酉 (雞)</option>
+            <option value="10">戌 (狗)</option>
+            <option value="11">亥 (豬)</option>
+        </select>
+
+        <select id="sihuaVersion">
+            <option value="standard">標準四化 (全真/多數派)</option>
+            <option value="zhongzhou">中州派四化</option>
+        </select>
+
+        <select id="birthMonth">
+            <option value="1">正月</option>
+            <option value="2">二月</option>
+            <option value="3">三月</option>
+            <option value="4">四月</option>
+            <option value="5">五月</option>
+            <option value="6">六月</option>
+            <option value="7">七月</option>
+            <option value="8">八月</option>
+            <option value="9">九月</option>
+            <option value="10">十月</option>
+            <option value="11">十一月</option>
+            <option value="12">十二月</option>
+        </select>
+        <select id="birthDay">
+            <option value="1">初一</option>
+            <option value="2">初二</option>
+            <option value="3">初三</option>
+            <option value="4">初四</option>
+            <option value="5">初五</option>
+            <option value="6">初六</option>
+            <option value="7">初七</option>
+            <option value="8">初八</option>
+            <option value="9">初九</option>
+            <option value="10">初十</option>
+            <option value="11">十一</option>
+            <option value="12">十二</option>
+            <option value="13">十三</option>
+            <option value="14">十四</option>
+            <option value="15">十五</option>
+            <option value="16">十六</option>
+            <option value="17">十七</option>
+            <option value="18">十八</option>
+            <option value="19">十九</option>
+            <option value="20">二十</option>
+            <option value="21">廿一</option>
+            <option value="22">廿二</option>
+            <option value="23">廿三</option>
+            <option value="24">廿四</option>
+            <option value="25">廿五</option>
+            <option value="26">廿六</option>
+            <option value="27">廿七</option>
+            <option value="28">廿八</option>
+            <option value="29">廿九</option>
+            <option value="30">三十</option>
+        </select>
+        <select id="birthHour">
+            <option value="0">子時</option>
+            <option value="1">丑時</option>
+            <option value="2">寅時</option>
+            <option value="3">卯時</option>
+            <option value="4">辰時</option>
+            <option value="5">巳時</option>
+            <option value="6">午時</option>
+            <option value="7">未時</option>
+            <option value="8">申時</option>
+            <option value="9">酉時</option>
+            <option value="10">戌時</option>
+            <option value="11">亥時</option>
+        </select>
+
+    </div>
+    <div class="main-container">
+        <canvas id="ziweiCanvas" width="600" height="600"></canvas>
+
+        <div id="infoPanel">
+            <div id="status">請先從上方選單選擇盤型</div>
+
+            <div style="margin: 10px 0 5px 0;"> <button id="lockBtn" onclick="toggleLock()" style="width: 100%; background: #555;">🔒 鎖定命盤架構</button>
+            </div>
+            <div style="display: flex; gap: 8px; margin-bottom: 10px;"> 
+                <button onclick="exportRecord()" style="flex: 1; background: #2e8b57;">💾 匯出筆記命盤</button>
+                <button onclick="document.getElementById('importFile').click()" style="flex: 1; background: #4682b4;">📂 載入紀錄</button>
+                <input type="file" id="importFile" style="display:none" onchange="importRecord(event)" accept=".json">
+            </div>
+
+            <div id="content">
+                </div>
+
+            <div id="patternNotice"
+                style="display:none; background: #fff5f5; border: 1px solid #ffcccc; padding: 10px; border-radius: 5px; margin-bottom: 15px; color: #b22222; font-size: 14px;">
+                <strong style="display: block; margin-bottom: 5px;">⚠️ 格局提醒：</strong>
+                <div id="patternList" style="line-height: 1.4;"></div>
+            </div>
+
+            <div id="noteArea" style="display:none;">
+                <label class="highlight">我的學習筆記：</label>
+                <textarea id="userNote" placeholder="在此輸入您的觀察、案例紀錄或心得..."></textarea>
+                <button onclick="saveNote()">儲存這格筆記</button>
+                <span id="saveStatus" class="save-status">已儲存！</span>
+            </div>
+        </div>
+
+    <script src="ziweimain.js"></script>
+    </body>
+</html>

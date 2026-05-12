@@ -1,0 +1,110 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Microsoft JhengHei", sans-serif;
+    background: #fdf5e6;
+    padding: 20px;
+}
+
+/* 1. 調整最上方盤型選單的底部間距 */
+.controls {
+    margin-bottom: 10px; /* 原本可能是 20px，改小 */
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #8b4513;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 1100px;
+}
+
+canvas {
+    border: 3px solid #8b4513;
+    background: #fff;
+    cursor: pointer;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+#infoPanel {
+    width: 400px;
+    height: 600px;         /* 1. 固定高度與左側 Canvas 一致 */
+    max-height: 600px;     /* 確保最高不會超過 600px */
+    box-sizing: border-box;/* 確保 padding 算在 600px 內，不會被撐大 */
+    margin-left: 20px;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #8b4513;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;      /* 2. 關鍵：內容超過時，自動出現垂直卷軸 */
+}
+
+.highlight {
+    color: #d2691e;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+select {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #8b4513;
+    cursor: pointer;
+}
+
+/* 筆記區樣式 */
+#noteArea {
+    margin-top: 20px;
+    border-top: 2px dashed #deb887;
+    padding-top: 15px;
+}
+
+textarea {
+    width: 100%;
+    height: 120px;
+    margin-top: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+    font-size: 14px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background: #8b4513;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background: #a0522d;
+}
+
+.save-status {
+    font-size: 12px;
+    color: green;
+    margin-left: 10px;
+    display: none;
+}
+/* 2. 調整年月日時選單的上下間距 */
+#paramSelectors {
+    margin-top: 5px;     /* 距離上方框框近一點 */
+    margin-bottom: 15px; /* 距離下方畫布近一點 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;           /* 下拉選單稍微靠攏，但不過擠 */
+}
